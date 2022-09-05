@@ -7,18 +7,12 @@ import java.util.List;
 public class Advertise {
 
     private Product product;
-    private Media media;
-
     private List<DailyResult> results = new LinkedList<DailyResult>();
-    public Advertise(Product product, Media media) {
+    public Advertise(Product product) {
         if (product == null) {
             throw new InvalidParameterException("Product is null");
         }
-        if (media == null) {
-            throw new InvalidParameterException("Media is null");
-        }
         this.product = product;
-        this.media = media;
     }
 
     public void record(DailyResult dailyResult) {

@@ -16,8 +16,7 @@ public class AdvertiseOperationFeeTest {
     public void Get20PercentOf1DailyResult()
     {
         Product product = new Product("SixPad");
-        Media media = new Media("Google");
-        Advertise advertise = new Advertise(product, media);
+        Advertise advertise = new Advertise(product);
         Date today = Calendar.getInstance().getTime();
         advertise.record(new DailyResult(today, 5000, 3));
 
@@ -30,8 +29,7 @@ public class AdvertiseOperationFeeTest {
     public void Get20PercentOf2DailyResults()
     {
         Product product = new Product("SixPad");
-        Media media = new Media("Google");
-        Advertise advertise = new Advertise(product, media);
+        Advertise advertise = new Advertise(product);
         Date today = Calendar.getInstance().getTime();
         advertise.record(new DailyResult(today, 5000, 3));
         advertise.record(new DailyResult(today, 7000, 5));

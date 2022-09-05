@@ -14,9 +14,8 @@ public class CreateAdvertiseTest
     public void testEnableToCreateAnAdvertise()
     {
         Product product = new Product("SixPad");
-        Media media = new Media("Google");
 
-        Advertise advertise = new Advertise(product, media);
+        Advertise advertise = new Advertise(product);
 
         assertNotNull(advertise);
     }
@@ -24,25 +23,10 @@ public class CreateAdvertiseTest
     @Test
     public void testFailedToCreateAnAdvertiseWithoutProduct()
     {
-        final Media media = new Media("Google");
-
         assertThrows(InvalidParameterException.class, new ThrowingRunnable() {
             @Override
             public void run() {
-                new Advertise(null, media);
-            }
-        });
-    }
-
-    @Test
-    public void testFailedToCreateAnAdvertiseWithoutMedia()
-    {
-        final Product product = new Product("SixPad");
-
-        assertThrows(InvalidParameterException.class, new ThrowingRunnable() {
-            @Override
-            public void run() {
-                new Advertise(product, null);
+                new Advertise(null);
             }
         });
     }
