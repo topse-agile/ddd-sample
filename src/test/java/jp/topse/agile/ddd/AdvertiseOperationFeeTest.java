@@ -30,9 +30,12 @@ public class AdvertiseOperationFeeTest {
     {
         Product product = new Product("SixPad");
         Advertise advertise = new Advertise(product);
-        Date today = Calendar.getInstance().getTime();
-        advertise.record(new DailyResult(today, 5000, 3));
-        advertise.record(new DailyResult(today, 7000, 5));
+        Calendar day = Calendar.getInstance();
+        Date d1 = day.getTime();
+        advertise.record(new DailyResult(d1, 5000, 3));
+        day.add(Calendar.DATE, 1);
+        Date d2 = day.getTime();
+        advertise.record(new DailyResult(d2, 7000, 5));
 
         int operationFee = advertise.getOperationFee();
 
