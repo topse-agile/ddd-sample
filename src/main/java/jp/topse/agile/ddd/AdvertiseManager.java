@@ -51,4 +51,22 @@ public class AdvertiseManager {
         Map<Date, Achievement> advertiseAchievements = achievements.get(advertiseId);
         return advertiseAchievements.get(date);
     }
+
+    public Achievement getAdvertiseAchievement(int advertiseId, int year, int month) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, 1);
+
+        int count = 0;
+        int cost = 0;
+        int maxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        for (int i = 1; i <= maxDay; ++i) {
+            calendar.set(Calendar.DATE, i);
+            Achievement achievement = getAchievement(advertiseId, calendar.getTime());
+            if (achievement != null) {
+                count += achievement.getCount();
+                cost += achievement.getCost();
+            }
+        }
+        return new Achievement(count, cost);
+    }
 }
