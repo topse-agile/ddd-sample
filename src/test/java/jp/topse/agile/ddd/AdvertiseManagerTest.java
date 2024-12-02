@@ -10,11 +10,12 @@ import static org.hamcrest.CoreMatchers.is;
 
 public class AdvertiseManagerTest {
 
+    AdvertiseManager manager = new AdvertiseManager();
+    Product product = new Product("Coffee");
+    Advertise advertise = new Advertise("coffee-01");
+
     @Test
     public void enableToRegisterProduct() {
-        AdvertiseManager manager = new AdvertiseManager();
-        Product product = new Product("Coffee");
-
         int id = manager.registerProduct(product);
         Product check = manager.getProduct(id);
 
@@ -23,8 +24,6 @@ public class AdvertiseManagerTest {
 
     @Test
     public void enableToRegisterAdvertise() {
-        AdvertiseManager manager = new AdvertiseManager();
-        Product product = new Product("Coffee");
         int productId = manager.registerProduct(product);
 
         Advertise advertise = new Advertise("coffee-01");
@@ -36,12 +35,8 @@ public class AdvertiseManagerTest {
 
     @Test
     public void enableToRegisterAdvertiseAchievement() {
-        AdvertiseManager manager = new AdvertiseManager();
-        Product product = new Product("Coffee");
         int productId = manager.registerProduct(product);
-        Advertise advertise = new Advertise("coffee-01");
         int advertiseId = manager.registerAdvertise(productId, advertise);
-
         Calendar calendar = Calendar.getInstance();
         calendar.set(2024, 11, 2);
         Date date = calendar.getTime();
@@ -56,10 +51,7 @@ public class AdvertiseManagerTest {
 
     @Test
     public void calculateAdvertiseCost() {
-        AdvertiseManager manager = new AdvertiseManager();
-        Product product = new Product("Coffee");
         int productId = manager.registerProduct(product);
-        Advertise advertise = new Advertise("coffee-01");
         int advertiseId = manager.registerAdvertise(productId, advertise);
 
         Calendar calendar = Calendar.getInstance();
