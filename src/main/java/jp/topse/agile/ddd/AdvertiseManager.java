@@ -1,9 +1,9 @@
 package jp.topse.agile.ddd;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class AdvertiseManager {
+
     static class ProductAdvertise {
         public Product product;
         public Advertise advertise;
@@ -16,6 +16,8 @@ public class AdvertiseManager {
 
     List<Product> products = new ArrayList<Product>();
     List<ProductAdvertise> productAdvertisePairs = new ArrayList<ProductAdvertise>();
+
+    Map<Integer, Map<Date, Achievement>> achievements = new HashMap<Integer, Map<Date, Achievement>>();
     public int registerProduct(Product product) {
         products.add(product);
         return products.size();
@@ -34,5 +36,19 @@ public class AdvertiseManager {
     public Advertise getAdvertise(int advertiseId) {
         ProductAdvertise productAdvertise = productAdvertisePairs.get(advertiseId - 1);
         return productAdvertise.advertise;
+    }
+
+    public void recordAchievement(int advertiseId, Date date, int count, int cost) {
+        Map<Date, Achievement> advertiseAchievements = achievements.get(advertiseId);
+        if (advertiseAchievements == null) {
+            advertiseAchievements = new HashMap<Date, Achievement>();
+            achievements.put(advertiseId, advertiseAchievements);
+        }
+        advertiseAchievements.put(date, new Achievement(count, cost));
+    }
+
+    public Achievement getAchievement(int advertiseId, Date date) {
+        Map<Date, Achievement> advertiseAchievements = achievements.get(advertiseId);
+        return advertiseAchievements.get(date);
     }
 }
